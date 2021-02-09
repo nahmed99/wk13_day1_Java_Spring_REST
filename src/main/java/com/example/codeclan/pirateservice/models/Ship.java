@@ -1,5 +1,7 @@
 package com.example.codeclan.pirateservice.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +17,7 @@ public class Ship {
     @Column // no need to annotate further, the column will be called 'name
     private String name;
 
+    @JsonIgnoreProperties("ship") // don't want any more after ship is encountered...
     @OneToMany(mappedBy = "ship") // the foreign key will be 'ship'
     private List<Pirate> pirates;
 

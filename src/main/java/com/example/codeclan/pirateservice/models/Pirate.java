@@ -1,5 +1,7 @@
 package com.example.codeclan.pirateservice.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity
@@ -20,6 +22,7 @@ public class Pirate {
 
     @ManyToOne
     @JoinColumn(name = "ship_id", nullable = false) // column on which pirate will link to ship + pirate MUST have a ship
+    @JsonIgnoreProperties({"pirates"}) // property that is returned from the model - curly braces if multiple variables need to be added.
     private Ship ship;
 
     public Pirate(String firstName, String lastName, int age, Ship ship) {
