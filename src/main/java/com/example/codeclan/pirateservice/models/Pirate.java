@@ -18,12 +18,18 @@ public class Pirate {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    public Pirate(String firstName, String lastName, int age) {
+    @ManyToOne
+    @JoinColumn(name = "ship_id", nullable = false) // column on which pirate will link to ship + pirate MUST have a ship
+    private Ship ship;
+
+    public Pirate(String firstName, String lastName, int age, Ship ship) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
+        this.ship = ship;
     }
 
+    // default constructor required for Spring to use.
     public Pirate() {
     }
 
@@ -49,6 +55,14 @@ public class Pirate {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public Ship getShip() {
+        return ship;
+    }
+
+    public void setShip(Ship ship) {
+        this.ship = ship;
     }
 
     public Long getId() {
