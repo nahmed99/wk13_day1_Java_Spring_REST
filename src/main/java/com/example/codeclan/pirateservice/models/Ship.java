@@ -17,7 +17,10 @@ public class Ship {
     @Column // no need to annotate further, the column will be called 'name
     private String name;
 
-    @JsonIgnoreProperties("ship") // don't want any more after ship is encountered...
+    // property that is returned from the model - curly braces if multiple variables need
+    // to be added. This will ignore the link from ship back to pirates (that is when recursion occurs).
+    // ...don't want any more data after ship is encountered...
+    @JsonIgnoreProperties("ship")
     @OneToMany(mappedBy = "ship") // the foreign key will be 'ship'
     private List<Pirate> pirates;
 
